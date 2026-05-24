@@ -1,5 +1,5 @@
 # ============================================================================
-# alleria · global.R
+# Alleria · global.R
 # ----------------------------------------------------------------------------
 # Aplicación Shiny independiente para análisis e inferencia sobre criptodivisas.
 # Stack 100% R: scraping en vivo (CoinGecko + Yahoo via quantmod), modelos
@@ -31,7 +31,7 @@ Sys.setlocale("LC_TIME", "C")
 ]
 if (length(.missing_pkgs) > 0) {
   stop(
-    "alleria: faltan paquetes requeridos -> ",
+    "Alleria: faltan paquetes requeridos -> ",
     paste(.missing_pkgs, collapse = ", "),
     "\nInstala con: install.packages(c(",
     paste0('"', .missing_pkgs, '"', collapse = ", "), "))",
@@ -94,107 +94,127 @@ req      <- shiny::req
 #   - ranger   -> random forest
 
 # ---- Diseño global de gráficas ----------------------------------------------
-# Paleta Crypto Aurora ---------------------------------------------------------
-crypto_aurora <- list(
-  bg          = "#0E1116",
-  surface     = "#161B22",
-  surface_alt = "#1F2731",
-  hairline    = "#2A323D",
-  ink         = "#E6EDF3",
-  ink_soft    = "#C9D1D9",
-  muted       = "#8B949E",
+# Paleta "Silvermoon" — apuesta lunar / elven sobre azul-noche.
+# Plata como metal primario (frío), champagne como acento de acción y brand
+# (cálido, sustituye al gold Bitcoin sin perder la lectura "metal precioso"),
+# mint celadón + crimson rosewood con cast frío para que no chillen sobre la
+# base lunar, violeta crepuscular como herencia Void, bone-parchment para
+# titulares (warm ivory leído sobre azul-noche = efecto "pergamino bajo
+# luz de luna").
+silvermoon <- list(
+  bg          = "#0A0F1A",   # azul-noche profundo
+  bg_deep     = "#060912",   # navbar / footer
+  surface     = "#131A28",   # cards
+  surface_alt = "#1C2538",   # card-cap / inputs
+  hairline    = "#28324A",   # bordes
 
-  # Acentos
-  gold        = "#F2A900",   # primario · Doge / Bitcoin
-  gold_soft   = "#FFD86B",
-  mint        = "#3FB950",   # alcista
-  mint_soft   = "#56D364",
-  crimson     = "#F85149",   # bajista
-  electric    = "#58A6FF",   # info / azul
-  violet      = "#A371F7"    # acento secundario
+  ink         = "#E7EAF2",   # texto base (cool)
+  ink_soft    = "#BAC2D2",   # texto secundario
+  muted       = "#7A8499",   # texto terciario / labels mono
+
+  # Tipografía editorial cálida sobre superficies frías
+  moonglow    = "#E4E7F0",   # plata luminosa (highlights de texto)
+  bone        = "#DCD6C2",   # warm parchment — H1/eyebrow/iconos nav
+
+  # Metales — el doble eje "luna + alba"
+  silver      = "#C4C9D6",   # plata primaria (neutro metal)
+  silver_soft = "#DCE0EA",
+  champagne   = "#D4B864",   # champán-oro pálido (CTA / brand accent / glow)
+  champagne_soft = "#E8D49C",
+
+  # Semánticas trading con cast frío sutil
+  mint        = "#5FA579",   # alcista — celadón
+  mint_soft   = "#7DBA94",
+  crimson     = "#D74E5A",   # bajista — rosewood
+  electric    = "#6BA6E0",   # info — azul lunar
+  violet      = "#B398E8"    # acento crepuscular — herencia Void
 )
 
-# Escala discreta consistente para criptodivisas (10 colores)
+# Escala discreta consistente para criptodivisas (10 colores).
+# Bitcoin conserva el champagne — el resto se distribuye sobre el arco
+# silver-violet-mint-electric para tener variedad sin volver al cliché
+# "todo gold" del periodo Doge.
 crypto_palette <- c(
-  BTC  = "#F2A900",
-  ETH  = "#A371F7",
-  BNB  = "#FFD86B",
-  SOL  = "#58A6FF",
-  ADA  = "#3FB950",
-  XRP  = "#79C0FF",
-  DOT  = "#FF7B72",
-  LTC  = "#8B949E",
-  LINK = "#56D364",
-  UNI  = "#F85149"
+  BTC  = "#D4B864",  # champagne
+  ETH  = "#B398E8",  # violet crepuscular
+  BNB  = "#E8D49C",  # champagne-soft
+  SOL  = "#6BA6E0",  # azul lunar
+  ADA  = "#5FA579",  # mint celadón
+  XRP  = "#9EC5E5",  # azul lunar suave
+  DOT  = "#D74E5A",  # rosewood
+  LTC  = "#C4C9D6",  # silver
+  LINK = "#7DBA94",  # mint claro
+  UNI  = "#D49AC8"   # rosa lunar
 )
 
-# Tema ggplot editorial dark
+# Tema ggplot editorial — lunar dark
 theme_aurora <- function(base_size = 13) {
   theme_minimal(base_size = base_size, base_family = "Inter") +
     theme(
-      plot.background    = element_rect(fill = crypto_aurora$bg, colour = NA),
-      panel.background   = element_rect(fill = crypto_aurora$bg, colour = NA),
-      panel.grid.major   = element_line(colour = "#222831", linewidth = 0.3),
+      plot.background    = element_rect(fill = silvermoon$bg, colour = NA),
+      panel.background   = element_rect(fill = silvermoon$bg, colour = NA),
+      panel.grid.major   = element_line(colour = silvermoon$hairline,
+                                        linewidth = 0.3),
       panel.grid.minor   = element_blank(),
-      axis.text          = element_text(colour = crypto_aurora$muted),
-      axis.title         = element_text(colour = crypto_aurora$ink_soft),
+      axis.text          = element_text(colour = silvermoon$muted),
+      axis.title         = element_text(colour = silvermoon$ink_soft),
       plot.title         = element_text(family = "Crimson Pro",
                                         face = "bold", size = base_size * 1.4,
-                                        colour = crypto_aurora$ink),
-      plot.subtitle      = element_text(colour = crypto_aurora$muted,
+                                        colour = silvermoon$bone),
+      plot.subtitle      = element_text(colour = silvermoon$muted,
                                         size = base_size * 0.95),
-      plot.caption       = element_text(colour = crypto_aurora$muted,
+      plot.caption       = element_text(colour = silvermoon$muted,
                                         size = base_size * 0.8, hjust = 1),
-      strip.background   = element_rect(fill = crypto_aurora$surface_alt,
+      strip.background   = element_rect(fill = silvermoon$surface_alt,
                                         colour = NA),
-      strip.text         = element_text(colour = crypto_aurora$ink_soft,
+      strip.text         = element_text(colour = silvermoon$ink_soft,
                                         face = "bold"),
-      legend.background  = element_rect(fill = crypto_aurora$bg, colour = NA),
-      legend.key         = element_rect(fill = crypto_aurora$bg, colour = NA),
-      legend.text        = element_text(colour = crypto_aurora$ink_soft),
-      legend.title       = element_text(colour = crypto_aurora$ink_soft)
+      legend.background  = element_rect(fill = silvermoon$bg, colour = NA),
+      legend.key         = element_rect(fill = silvermoon$bg, colour = NA),
+      legend.text        = element_text(colour = silvermoon$ink_soft),
+      legend.title       = element_text(colour = silvermoon$ink_soft)
     )
 }
 
 theme_set(theme_aurora())
 
-# ---- Tema bslib (Bootstrap 5 dark) ------------------------------------------
+# ---- Tema bslib (Bootstrap 5 · Silvermoon) ----------------------------------
 alleria_theme <- bslib::bs_theme(
   version      = 5,
   preset       = NULL,
   bootswatch   = NULL,
-  primary      = crypto_aurora$gold,
-  secondary    = crypto_aurora$violet,
-  success      = crypto_aurora$mint,
-  info         = crypto_aurora$electric,
-  warning      = crypto_aurora$gold_soft,
-  danger       = crypto_aurora$crimson,
-  bg           = crypto_aurora$bg,
-  fg           = crypto_aurora$ink,
+  primary      = silvermoon$champagne,   # acción
+  secondary    = silvermoon$silver,      # neutro metal
+  success      = silvermoon$mint,
+  info         = silvermoon$electric,
+  warning      = silvermoon$champagne_soft,
+  danger       = silvermoon$crimson,
+  bg           = silvermoon$bg,
+  fg           = silvermoon$ink,
   base_font    = bslib::font_google("Inter"),
   heading_font = bslib::font_google("Crimson Pro"),
   code_font    = bslib::font_google("JetBrains Mono"),
 
-  "body-bg"          = crypto_aurora$bg,
-  "body-color"       = crypto_aurora$ink,
+  "body-bg"          = silvermoon$bg,
+  "body-color"       = silvermoon$ink,
   "border-radius"    = "0.55rem",
   "border-radius-sm" = "0.4rem",
   "border-radius-lg" = "0.75rem",
 
-  "card-bg"           = crypto_aurora$surface,
-  "card-cap-bg"       = crypto_aurora$surface_alt,
-  "card-border-color" = crypto_aurora$hairline,
+  "card-bg"           = silvermoon$surface,
+  "card-cap-bg"       = silvermoon$surface_alt,
+  "card-border-color" = silvermoon$hairline,
 
-  "navbar-bg"                = "#0A0D11",
-  "navbar-dark-color"        = "rgba(230,237,243,0.72)",
-  "navbar-dark-hover-color"  = crypto_aurora$gold,
-  "navbar-dark-active-color" = crypto_aurora$gold,
+  "navbar-bg"                = silvermoon$bg_deep,
+  "navbar-dark-color"        = "rgba(231,234,242,0.72)",
+  "navbar-dark-hover-color"  = silvermoon$champagne,
+  "navbar-dark-active-color" = silvermoon$champagne,
   "navbar-brand-font-size"   = "1.3rem",
 
-  "input-bg"                = crypto_aurora$surface_alt,
-  "input-color"             = crypto_aurora$ink,
-  "input-border-color"      = crypto_aurora$hairline,
-  "input-focus-border-color"= crypto_aurora$gold,
+  "input-bg"                = silvermoon$surface_alt,
+  "input-color"             = silvermoon$ink,
+  "input-border-color"      = silvermoon$hairline,
+  "input-focus-border-color"= silvermoon$champagne,
   "btn-font-weight"         = "500"
 )
 
@@ -251,6 +271,6 @@ fmt_pct <- function(x, accuracy = 0.01) {
 }
 
 color_pct <- function(x) {
-  ifelse(is.na(x), crypto_aurora$muted,
-         ifelse(x >= 0, crypto_aurora$mint, crypto_aurora$crimson))
+  ifelse(is.na(x), silvermoon$muted,
+         ifelse(x >= 0, silvermoon$mint, silvermoon$crimson))
 }

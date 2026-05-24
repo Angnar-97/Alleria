@@ -1,5 +1,5 @@
 # ============================================================================
-# alleria · server.R — lógica reactiva sobre stack R puro
+# Alleria · server.R — lógica reactiva sobre stack R puro
 # ============================================================================
 
 server <- function(input, output, session) {
@@ -46,7 +46,7 @@ server <- function(input, output, session) {
     ys <- h - (v - rng[1]) / (rng[2] - rng[1]) * h
     pts <- paste0(round(xs, 1), ",", round(ys, 1), collapse = " ")
     color <- ifelse(utils::tail(v, 1) >= v[1],
-                    crypto_aurora$mint, crypto_aurora$crimson)
+                    silvermoon$mint, silvermoon$crimson)
     sprintf(
       '<svg width="%d" height="%d" viewBox="0 0 %d %d">
          <polyline points="%s" fill="none" stroke="%s" stroke-width="1.6"/>
@@ -346,14 +346,14 @@ server <- function(input, output, session) {
     if (is.null(s$fit)) {
       return(plotly::plot_ly() |>
         plotly::layout(
-          paper_bgcolor = crypto_aurora$bg,
-          plot_bgcolor  = crypto_aurora$bg,
+          paper_bgcolor = silvermoon$bg,
+          plot_bgcolor  = silvermoon$bg,
           annotations = list(list(
             x = 0.5, y = 0.5, xref = "paper", yref = "paper",
             text = "Pulsa <b>Ajustar y pronosticar</b> para empezar.",
             showarrow = FALSE,
             font = list(family = "Crimson Pro",
-                        color = crypto_aurora$muted, size = 18)
+                        color = silvermoon$muted, size = 18)
           ))
         ))
     }

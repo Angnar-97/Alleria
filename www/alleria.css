@@ -1,34 +1,47 @@
 /* ============================================================
-   alleria — "Crypto Aurora" design system
-   Dark editorial, distinta a Ember/Blight/Verdant: night canvas
-   con acento Doge/Bitcoin gold + verde mint (alcista) + rojo
-   crimson (bajista) + electric blue + violeta. Tipografía
-   Crimson Pro (display) + Inter (body) + JetBrains Mono (code)
-   coherente con el resto del portfolio de Angnar.
+   Alleria — "Silvermoon" design system
+   ----------------------------------------------------------------
+   Apuesta lunar / elven sobre azul-noche. Plata como metal primario
+   (frío) + champagne como acento de acción y brand (cálido, sustituye
+   al gold Bitcoin sin perder la lectura "metal precioso"). Mint
+   celadón + crimson rosewood con cast frío para no chillar sobre la
+   base lunar. Violet crepuscular como herencia Void. Bone-parchment
+   para titulares (warm ivory sobre azul-noche → efecto "pergamino
+   bajo luz de luna"). El árbol celta filtrado a plata.
    ============================================================ */
 
 :root {
-  --alleria-bg:          #0E1116;
-  --alleria-bg-deep:     #0A0D11;
-  --alleria-surface:     #161B22;
-  --alleria-surface-alt: #1F2731;
-  --alleria-hairline:    #2A323D;
+  /* --- Superficies (cool) -------------------------------------- */
+  --alleria-bg:          #0A0F1A;
+  --alleria-bg-deep:     #060912;
+  --alleria-surface:     #131A28;
+  --alleria-surface-alt: #1C2538;
+  --alleria-hairline:    #28324A;
 
-  --alleria-ink:         #E6EDF3;
-  --alleria-ink-soft:    #C9D1D9;
-  --alleria-muted:       #8B949E;
+  /* --- Tipografía (mezcla cool body + warm titulares) ---------- */
+  --alleria-ink:         #E7EAF2;   /* cool body */
+  --alleria-ink-soft:    #BAC2D2;
+  --alleria-muted:       #7A8499;
+  --alleria-moonglow:    #E4E7F0;   /* highlights luminosos */
+  --alleria-bone:        #DCD6C2;   /* warm parchment — titulares + iconos nav */
 
-  --alleria-gold:        #F2A900;
-  --alleria-gold-soft:   #FFD86B;
-  --alleria-bone:        #EFE7D2;  /* blanco roto cálido para iconos nav */
-  --alleria-mint:        #3FB950;
-  --alleria-crimson:     #F85149;
-  --alleria-electric:    #58A6FF;
-  --alleria-violet:      #A371F7;
+  /* --- Metales · doble eje "luna + alba" ----------------------- */
+  --alleria-silver:        #C4C9D6;
+  --alleria-silver-soft:   #DCE0EA;
+  --alleria-champagne:     #D4B864;   /* CTA · brand accent · glow celta */
+  --alleria-champagne-soft:#E8D49C;
 
-  --alleria-shadow-sm:  0 2px 8px rgba(0, 0, 0, 0.32);
-  --alleria-shadow-md:  0 8px 28px rgba(0, 0, 0, 0.45);
-  --alleria-shadow-lg:  0 20px 60px rgba(0, 0, 0, 0.55);
+  /* --- Semánticas trading (cast frío sutil) -------------------- */
+  --alleria-mint:        #5FA579;   /* celadón */
+  --alleria-mint-soft:   #7DBA94;
+  --alleria-crimson:     #D74E5A;   /* rosewood */
+  --alleria-electric:    #6BA6E0;   /* azul lunar — info */
+  --alleria-violet:      #B398E8;   /* crepuscular — herencia Void */
+
+  /* --- Profundidad y tipografía -------------------------------- */
+  --alleria-shadow-sm:  0 2px 8px rgba(0, 0, 0, 0.38);
+  --alleria-shadow-md:  0 8px 28px rgba(0, 0, 0, 0.50);
+  --alleria-shadow-lg:  0 20px 60px rgba(0, 0, 0, 0.58);
 
   --alleria-font-serif: "Crimson Pro", "Source Serif Pro", Georgia, serif;
   --alleria-font-sans:  "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
@@ -46,7 +59,7 @@ html, body {
 }
 h1, h2, h3, h4, .alleria-serif {
   font-family: var(--alleria-font-serif);
-  color: var(--alleria-ink);
+  color: var(--alleria-bone);       /* warm parchment para titulares */
   letter-spacing: -0.01em;
 }
 code, pre, kbd, .alleria-mono {
@@ -54,12 +67,15 @@ code, pre, kbd, .alleria-mono {
   font-size: 0.88em;
 }
 a {
-  color: var(--alleria-gold);
+  color: var(--alleria-champagne);
   text-decoration: none;
-  border-bottom: 1px solid rgba(242, 169, 0, 0.25);
+  border-bottom: 1px solid rgba(212, 184, 100, 0.28);
   transition: color 0.15s, border-color 0.15s;
 }
-a:hover { color: var(--alleria-gold-soft); border-bottom-color: var(--alleria-gold-soft); }
+a:hover {
+  color: var(--alleria-champagne-soft);
+  border-bottom-color: var(--alleria-champagne-soft);
+}
 a.btn, .navbar a, .card-header a, .alleria-secondary-link, .alleria-footer a {
   border-bottom: none;
 }
@@ -74,12 +90,12 @@ a.btn, .navbar a, .card-header a, .alleria-secondary-link, .alleria-footer a {
   display: inline-flex !important;
   align-items: center;
   gap: 12px;
-  color: var(--alleria-ink) !important;
+  color: var(--alleria-bone) !important;
 }
 .alleria-logo {
   height: 34px;
   width: auto;
-  filter: brightness(0) invert(1);
+  filter: brightness(0) invert(0.92);   /* plata */
   opacity: 0.92;
   transition: opacity 0.2s, transform 0.3s ease;
 }
@@ -93,12 +109,11 @@ a.btn, .navbar a, .card-header a, .alleria-secondary-link, .alleria-footer a {
   font-size: 1.4rem;
   letter-spacing: -0.01em;
 }
-.alleria-brand-text .alleria-accent { color: var(--alleria-gold); }
+.alleria-brand-text .alleria-accent { color: var(--alleria-champagne); }
 .alleria-navbar-spacer { height: 4.2rem; }
 
-/* Iconos (bsicons -> SVG) de las pestañas del navbar:
-   blanco roto cálido elegante, gold al hover/activo. El color del texto
-   contiguo lo sigue mandando bslib via navbar-dark-color. */
+/* Iconos (bsicons -> SVG) de las pestañas: blanco roto cálido elegante,
+   champagne al hover/activo. */
 .navbar .nav-link svg,
 .navbar .nav-link i,
 .navbar .nav-link .bi {
@@ -114,16 +129,21 @@ a.btn, .navbar a, .card-header a, .alleria-secondary-link, .alleria-footer a {
 .navbar .nav-link.active svg,
 .navbar .nav-link.active i,
 .navbar .nav-link.active .bi {
-  color: var(--alleria-gold);
+  color: var(--alleria-champagne);
   opacity: 1;
 }
 
 /* ---------- Hero ------------------------------------------ */
 .alleria-hero {
   background:
-    radial-gradient(ellipse at 80% -10%, rgba(242,169,0,0.18), transparent 55%),
-    radial-gradient(ellipse at 0% 110%, rgba(163,113,247,0.12), transparent 50%),
-    linear-gradient(180deg, #0A0D11 0%, #161B22 100%);
+    /* halo champagne arriba a la derecha (acento "alba") */
+    radial-gradient(ellipse at 80% -10%,
+                    rgba(212, 184, 100, 0.20), transparent 55%),
+    /* glow violeta crepuscular abajo a la izquierda (Void) */
+    radial-gradient(ellipse at 0% 110%,
+                    rgba(179, 152, 232, 0.14), transparent 50%),
+    /* base azul-noche */
+    linear-gradient(180deg, #060912 0%, #131A28 100%);
   padding: 5rem 1.2rem 4.5rem;
   border-bottom: 1px solid var(--alleria-hairline);
 }
@@ -143,19 +163,24 @@ a.btn, .navbar a, .card-header a, .alleria-secondary-link, .alleria-footer a {
   position: relative;
 }
 .alleria-hero-art::after {
+  /* Halo champagne detrás del árbol — "centinela plateado iluminado
+     por el alba". Antes era gold neto, ahora es champagne ↔ luna */
   content: "";
   position: absolute;
   inset: 12% 8%;
-  background: radial-gradient(circle, rgba(242,169,0,0.28), transparent 65%);
+  background:
+    radial-gradient(circle at 60% 40%,
+                    rgba(212, 184, 100, 0.30), transparent 55%),
+    radial-gradient(circle at 40% 60%,
+                    rgba(179, 152, 232, 0.18), transparent 60%);
   filter: blur(40px);
   z-index: 0;
 }
 .alleria-hero-logo {
   width: 62%;
   max-width: 280px;
-  filter: drop-shadow(0 10px 24px rgba(0,0,0,0.5))
-          brightness(0.92) saturate(0.4)
-          hue-rotate(-25deg);
+  filter: drop-shadow(0 10px 24px rgba(0,0,0,0.55))
+          brightness(0) invert(0.92);   /* plata pura */
   position: relative;
   z-index: 1;
   opacity: 0.94;
@@ -172,8 +197,8 @@ a.btn, .navbar a, .card-header a, .alleria-secondary-link, .alleria-footer a {
   font-size: 0.78rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--alleria-gold);
-  border: 1px solid rgba(242, 169, 0, 0.45);
+  color: var(--alleria-champagne);
+  border: 1px solid rgba(212, 184, 100, 0.42);
   padding: 0.25rem 0.7rem;
   border-radius: 999px;
   margin-bottom: 1.1rem;
@@ -183,40 +208,42 @@ a.btn, .navbar a, .card-header a, .alleria-secondary-link, .alleria-footer a {
   font-size: clamp(2.6rem, 5vw, 4.2rem);
   font-weight: 700;
   margin: 0 0 0.6rem;
-  color: var(--alleria-ink);
+  color: var(--alleria-bone);
   line-height: 1.05;
 }
-.alleria-hero-title .alleria-accent { color: var(--alleria-gold); }
+.alleria-hero-title .alleria-accent { color: var(--alleria-champagne); }
 .alleria-hero-tagline {
   font-family: var(--alleria-font-serif);
   font-size: 1.4rem;
   font-style: italic;
-  color: var(--alleria-ink-soft);
+  color: var(--alleria-moonglow);
   margin-bottom: 0.9rem;
 }
 .alleria-hero-sub {
   font-size: 1.02rem;
-  color: var(--alleria-muted);
+  color: var(--alleria-ink-soft);
   max-width: 56ch;
   line-height: 1.55;
   margin-bottom: 1.6rem;
 }
-.alleria-hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+.alleria-hero-actions {
+  display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;
+}
 .alleria-cta {
-  background: var(--alleria-gold) !important;
-  border-color: var(--alleria-gold) !important;
+  background: var(--alleria-champagne) !important;
+  border-color: var(--alleria-champagne) !important;
   color: #1A1300 !important;
   font-weight: 600;
   padding: 0.65rem 1.2rem;
   border-radius: 0.55rem;
-  box-shadow: 0 6px 18px rgba(242,169,0,0.25);
+  box-shadow: 0 6px 18px rgba(212, 184, 100, 0.28);
 }
 .alleria-cta:hover {
-  background: var(--alleria-gold-soft) !important;
-  border-color: var(--alleria-gold-soft) !important;
+  background: var(--alleria-champagne-soft) !important;
+  border-color: var(--alleria-champagne-soft) !important;
 }
 .alleria-secondary-link {
-  color: var(--alleria-ink-soft);
+  color: var(--alleria-silver);
   font-family: var(--alleria-font-mono);
   font-size: 0.85rem;
   letter-spacing: 0.04em;
@@ -224,21 +251,22 @@ a.btn, .navbar a, .card-header a, .alleria-secondary-link, .alleria-footer a {
   padding-bottom: 2px;
 }
 
-/* ---------- Section base ---------------------------------- */
+/* ---------- Sections base --------------------------------- */
 .alleria-section {
   padding: 4rem 1.2rem;
   border-bottom: 1px solid var(--alleria-hairline);
 }
-.alleria-section-narrow .alleria-section-body { max-width: 880px; margin: 0 auto; }
+.alleria-section-narrow .alleria-section-body {
+  max-width: 880px; margin: 0 auto;
+}
 .alleria-section-head {
-  max-width: 1240px;
-  margin: 0 auto 2.4rem;
+  max-width: 1240px; margin: 0 auto 2.4rem;
 }
 .alleria-section-title {
   font-family: var(--alleria-font-serif);
   font-size: clamp(1.7rem, 3vw, 2.4rem);
   font-weight: 600;
-  color: var(--alleria-ink);
+  color: var(--alleria-bone);
   margin: 0.4rem 0 0;
 }
 
@@ -250,7 +278,9 @@ a.btn, .navbar a, .card-header a, .alleria-secondary-link, .alleria-footer a {
   grid-template-columns: repeat(4, 1fr);
   gap: 1.2rem;
 }
-@media (max-width: 900px) { .alleria-kpis { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 900px) {
+  .alleria-kpis { grid-template-columns: repeat(2, 1fr); }
+}
 .alleria-kpi {
   background: var(--alleria-surface);
   border: 1px solid var(--alleria-hairline);
@@ -263,10 +293,12 @@ a.btn, .navbar a, .card-header a, .alleria-secondary-link, .alleria-footer a {
   overflow: hidden;
 }
 .alleria-kpi::before {
+  /* Gradient nuevo: arco "luna-a-alba" (silver → champagne) */
   content: "";
   position: absolute;
   top: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, var(--alleria-gold), var(--alleria-violet));
+  background: linear-gradient(90deg,
+              var(--alleria-silver), var(--alleria-champagne));
 }
 .alleria-kpi-label {
   font-family: var(--alleria-font-mono);
@@ -279,7 +311,7 @@ a.btn, .navbar a, .card-header a, .alleria-secondary-link, .alleria-footer a {
   font-family: var(--alleria-font-serif);
   font-size: 1.85rem;
   font-weight: 600;
-  color: var(--alleria-ink);
+  color: var(--alleria-bone);
 }
 .alleria-kpi-sub {
   font-size: 0.84rem;
@@ -294,7 +326,9 @@ a.btn, .navbar a, .card-header a, .alleria-secondary-link, .alleria-footer a {
   grid-template-columns: repeat(4, 1fr);
   gap: 1.2rem;
 }
-@media (max-width: 900px) { .alleria-steps { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 900px) {
+  .alleria-steps { grid-template-columns: repeat(2, 1fr); }
+}
 .alleria-step {
   background: var(--alleria-surface);
   border: 1px solid var(--alleria-hairline);
@@ -306,16 +340,21 @@ a.btn, .navbar a, .card-header a, .alleria-secondary-link, .alleria-footer a {
   font-family: var(--alleria-font-mono);
   font-size: 0.78rem;
   letter-spacing: 0.16em;
-  color: var(--alleria-gold);
+  color: var(--alleria-champagne);
   text-transform: uppercase;
 }
 .alleria-step h3 {
   font-family: var(--alleria-font-serif);
   font-size: 1.2rem;
   margin: 0.4rem 0 0.5rem;
-  color: var(--alleria-ink);
+  color: var(--alleria-bone);
 }
-.alleria-step p { color: var(--alleria-muted); font-size: 0.93rem; line-height: 1.55; margin: 0; }
+.alleria-step p {
+  color: var(--alleria-ink-soft);
+  font-size: 0.93rem;
+  line-height: 1.55;
+  margin: 0;
+}
 
 /* ---------- Feature grid ---------------------------------- */
 .alleria-features {
@@ -325,7 +364,9 @@ a.btn, .navbar a, .card-header a, .alleria-secondary-link, .alleria-footer a {
   grid-template-columns: repeat(3, 1fr);
   gap: 1.2rem;
 }
-@media (max-width: 900px) { .alleria-features { grid-template-columns: 1fr; } }
+@media (max-width: 900px) {
+  .alleria-features { grid-template-columns: 1fr; }
+}
 .alleria-feature {
   background: var(--alleria-surface);
   border: 1px solid var(--alleria-hairline);
@@ -336,18 +377,25 @@ a.btn, .navbar a, .card-header a, .alleria-secondary-link, .alleria-footer a {
 .alleria-feature-icon {
   width: 38px; height: 38px;
   border-radius: 0.55rem;
-  background: linear-gradient(135deg, rgba(242,169,0,0.18), rgba(163,113,247,0.18));
+  background: linear-gradient(135deg,
+              rgba(212, 184, 100, 0.20),
+              rgba(179, 152, 232, 0.20));
   display: flex; align-items: center; justify-content: center;
-  color: var(--alleria-gold);
+  color: var(--alleria-champagne);
   font-size: 1.2rem; flex-shrink: 0;
 }
 .alleria-feature h3 {
   font-family: var(--alleria-font-serif);
   font-size: 1.08rem;
-  color: var(--alleria-ink);
+  color: var(--alleria-bone);
   margin: 0 0 0.35rem;
 }
-.alleria-feature p { color: var(--alleria-muted); margin: 0; font-size: 0.92rem; line-height: 1.5; }
+.alleria-feature p {
+  color: var(--alleria-ink-soft);
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
 
 /* ---------- Cards (bslib) --------------------------------- */
 .card {
@@ -360,7 +408,7 @@ a.btn, .navbar a, .card-header a, .alleria-secondary-link, .alleria-footer a {
   border-bottom: 1px solid var(--alleria-hairline) !important;
   font-family: var(--alleria-font-serif);
   font-weight: 600;
-  color: var(--alleria-ink);
+  color: var(--alleria-bone);
 }
 .bslib-value-box {
   background: var(--alleria-surface) !important;
@@ -369,7 +417,7 @@ a.btn, .navbar a, .card-header a, .alleria-secondary-link, .alleria-footer a {
 .bslib-value-box .value-box-title { color: var(--alleria-muted) !important; }
 .bslib-value-box .value-box-value {
   font-family: var(--alleria-font-serif) !important;
-  color: var(--alleria-ink) !important;
+  color: var(--alleria-bone) !important;
 }
 
 /* ---------- Inputs ---------------------------------------- */
@@ -379,8 +427,8 @@ a.btn, .navbar a, .card-header a, .alleria-secondary-link, .alleria-footer a {
   border-color: var(--alleria-hairline) !important;
 }
 .form-control:focus, .selectize-input.focus {
-  border-color: var(--alleria-gold) !important;
-  box-shadow: 0 0 0 0.2rem rgba(242,169,0,0.2) !important;
+  border-color: var(--alleria-champagne) !important;
+  box-shadow: 0 0 0 0.2rem rgba(212, 184, 100, 0.22) !important;
 }
 .selectize-dropdown {
   background: var(--alleria-surface) !important;
@@ -389,7 +437,7 @@ a.btn, .navbar a, .card-header a, .alleria-secondary-link, .alleria-footer a {
 }
 .selectize-dropdown .active {
   background: var(--alleria-surface-alt) !important;
-  color: var(--alleria-gold) !important;
+  color: var(--alleria-champagne) !important;
 }
 .shiny-input-container > label { color: var(--alleria-ink-soft); }
 
@@ -401,7 +449,7 @@ table.dataTable {
 }
 table.dataTable thead th {
   background: var(--alleria-surface-alt) !important;
-  color: var(--alleria-ink) !important;
+  color: var(--alleria-bone) !important;
   border-bottom: 1px solid var(--alleria-hairline) !important;
   font-family: var(--alleria-font-mono);
   font-size: 0.78rem !important;
@@ -425,8 +473,8 @@ table.dataTable tbody tr:hover {
   color: var(--alleria-ink-soft) !important;
 }
 .dataTables_wrapper .paginate_button.current {
-  background: var(--alleria-gold) !important;
-  border-color: var(--alleria-gold) !important;
+  background: var(--alleria-champagne) !important;
+  border-color: var(--alleria-champagne) !important;
   color: #1A1300 !important;
 }
 
@@ -448,17 +496,19 @@ table.dataTable tbody tr:hover {
   grid-template-columns: 1.6fr 1fr 1fr;
   gap: 2.4rem;
 }
-@media (max-width: 900px) { .alleria-footer-grid { grid-template-columns: 1fr; } }
+@media (max-width: 900px) {
+  .alleria-footer-grid { grid-template-columns: 1fr; }
+}
 .alleria-footer-col .alleria-eyebrow { margin-bottom: 0.8rem; }
 .alleria-footer-lead {
-  color: var(--alleria-ink-soft);
+  color: var(--alleria-bone);
   font-family: var(--alleria-font-serif);
   font-size: 1.05rem;
   line-height: 1.55;
   margin: 0;
 }
-.alleria-footer a { color: var(--alleria-ink-soft); }
-.alleria-footer a:hover { color: var(--alleria-gold); }
+.alleria-footer a { color: var(--alleria-silver); }
+.alleria-footer a:hover { color: var(--alleria-champagne); }
 
 /* ---------- Page (sub-pages) ------------------------------ */
 .alleria-page { padding: 3.4rem 1.2rem 4rem; }
@@ -467,16 +517,20 @@ table.dataTable tbody tr:hover {
   font-family: var(--alleria-font-serif);
   font-size: clamp(2rem, 4vw, 2.8rem);
   margin: 0.3rem 0 1.6rem;
-  color: var(--alleria-ink);
+  color: var(--alleria-bone);
 }
-.alleria-deps { display: grid; grid-template-columns: 200px 1fr; gap: 0.5rem 1.2rem; }
+.alleria-deps {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 0.5rem 1.2rem;
+}
 .alleria-deps dt {
-  color: var(--alleria-gold);
+  color: var(--alleria-champagne);
   font-family: var(--alleria-font-mono);
   font-size: 0.92rem;
   text-transform: lowercase;
 }
-.alleria-deps dd { color: var(--alleria-muted); margin: 0; }
+.alleria-deps dd { color: var(--alleria-ink-soft); margin: 0; }
 
 /* ---------- Misc ------------------------------------------ */
 .alleria-muted { color: var(--alleria-muted); }
@@ -486,26 +540,26 @@ table.dataTable tbody tr:hover {
   margin: 2rem 0;
 }
 .btn-primary {
-  background: var(--alleria-gold);
-  border-color: var(--alleria-gold);
+  background: var(--alleria-champagne);
+  border-color: var(--alleria-champagne);
   color: #1A1300;
   font-weight: 500;
 }
 .btn-primary:hover {
-  background: var(--alleria-gold-soft);
-  border-color: var(--alleria-gold-soft);
+  background: var(--alleria-champagne-soft);
+  border-color: var(--alleria-champagne-soft);
   color: #1A1300;
 }
 .btn-outline-primary {
-  border-color: var(--alleria-gold);
-  color: var(--alleria-gold);
+  border-color: var(--alleria-champagne);
+  color: var(--alleria-champagne);
 }
 .btn-outline-primary:hover {
-  background: var(--alleria-gold);
+  background: var(--alleria-champagne);
   color: #1A1300;
 }
 
 /* plotly modebar */
 .modebar { background: transparent !important; }
 .modebar-btn path { fill: var(--alleria-muted) !important; }
-.modebar-btn:hover path { fill: var(--alleria-gold) !important; }
+.modebar-btn:hover path { fill: var(--alleria-champagne) !important; }

@@ -1,5 +1,5 @@
 # ============================================================================
-# alleria · ui.R — page_navbar editorial · paleta Crypto Aurora
+# Alleria · ui.R — page_navbar editorial · paleta Crypto Aurora
 # ============================================================================
 
 ui <- bslib::page_navbar(
@@ -8,9 +8,9 @@ ui <- bslib::page_navbar(
     class = "alleria-brand",
     tags$img(src = "celta.png", class = "alleria-logo", alt = "Árbol celta"),
     tags$span(class = "alleria-brand-text",
-              "al", tags$span(class = "alleria-accent", "l"), "eria")
+              "Al", tags$span(class = "alleria-accent", "l"), "eria")
   ),
-  window_title = "alleria · cripto en R",
+  window_title = "Alleria · cripto en R",
   theme        = alleria_theme,
   fillable     = FALSE,
   padding      = 0,
@@ -25,7 +25,7 @@ ui <- bslib::page_navbar(
       tags$link(rel = "icon", type = "image/png", href = "celta.png"),
       tags$meta(name = "description",
                 content = paste(
-                  "alleria es un dashboard Shiny en R para rastrear",
+                  "Alleria es un dashboard Shiny en R para rastrear",
                   "criptodivisas en tiempo real con CoinGecko + Yahoo Finance,",
                   "modelos ARIMA / ETS / Prophet / Random Forest y",
                   "visualizaciones interactivas con plotly."
@@ -41,7 +41,7 @@ ui <- bslib::page_navbar(
     class = "alleria-footer",
     tags$div(class = "alleria-footer-grid",
       tags$div(class = "alleria-footer-col",
-        tags$span(class = "alleria-eyebrow", "alleria"),
+        tags$span(class = "alleria-eyebrow", "Alleria"),
         tags$p(class = "alleria-footer-lead",
           "Cazadora de mercados cripto, en R: scraping en vivo, modelos ",
           "estadísticos clásicos y visualización editorial.")
@@ -85,7 +85,7 @@ ui <- bslib::page_navbar(
           tags$span(class = "alleria-eyebrow",
             "Cripto en R · Shiny + bslib · Tiempo real"),
           tags$h1(class = "alleria-hero-title",
-            "al", tags$span(class = "alleria-accent", "l"), "eria"),
+            "Al", tags$span(class = "alleria-accent", "l"), "eria"),
           tags$p(class = "alleria-hero-tagline",
             "Cazadora de mercados cripto, en R."),
           tags$p(class = "alleria-hero-sub",
@@ -185,7 +185,7 @@ ui <- bslib::page_navbar(
       tags$div(class = "alleria-section-head",
         tags$span(class = "alleria-eyebrow", "Capacidades"),
         tags$h2(class = "alleria-section-title",
-                "Qué puedes hacer en alleria.")
+                "Qué puedes hacer en Alleria.")
       ),
       tags$div(class = "alleria-features",
         tags$article(class = "alleria-feature",
@@ -267,7 +267,7 @@ ui <- bslib::page_navbar(
             bslib::card_body(
               shinycssloaders::withSpinner(
                 plotly::plotlyOutput("market_treemap", height = "520px"),
-                type = 6, color = crypto_aurora$gold
+                type = 6, color = silvermoon$champagne
               )
             )
           ),
@@ -302,7 +302,7 @@ ui <- bslib::page_navbar(
           bslib::card_body(
             shinycssloaders::withSpinner(
               DT::dataTableOutput("market_table"),
-              type = 6, color = crypto_aurora$gold
+              type = 6, color = silvermoon$champagne
             )
           ),
           bslib::card_footer(
@@ -347,7 +347,7 @@ ui <- bslib::page_navbar(
           bslib::card_body(
             shinycssloaders::withSpinner(
               plotly::plotlyOutput("candle_plot", height = "560px"),
-              type = 6, color = crypto_aurora$gold
+              type = 6, color = silvermoon$champagne
             )
           )
         ),
@@ -357,7 +357,7 @@ ui <- bslib::page_navbar(
           bslib::card_body(
             shinycssloaders::withSpinner(
               plotly::plotlyOutput("candle_rsi", height = "240px"),
-              type = 6, color = crypto_aurora$gold
+              type = 6, color = silvermoon$champagne
             )
           )
         )
@@ -404,7 +404,7 @@ ui <- bslib::page_navbar(
             bslib::card_body(
               shinycssloaders::withSpinner(
                 plotly::plotlyOutput("compare_returns", height = "480px"),
-                type = 6, color = crypto_aurora$gold
+                type = 6, color = silvermoon$champagne
               )
             )
           )
@@ -419,7 +419,7 @@ ui <- bslib::page_navbar(
             bslib::card_body(
               shinycssloaders::withSpinner(
                 plotly::plotlyOutput("compare_drawdown", height = "420px"),
-                type = 6, color = crypto_aurora$gold
+                type = 6, color = silvermoon$champagne
               )
             )
           ),
@@ -430,7 +430,7 @@ ui <- bslib::page_navbar(
             bslib::card_body(
               shinycssloaders::withSpinner(
                 plotly::plotlyOutput("compare_corr", height = "420px"),
-                type = 6, color = crypto_aurora$gold
+                type = 6, color = silvermoon$champagne
               )
             )
           )
@@ -445,7 +445,7 @@ ui <- bslib::page_navbar(
             bslib::card_body(
               shinycssloaders::withSpinner(
                 plotly::plotlyOutput("compare_calendar", height = "420px"),
-                type = 6, color = crypto_aurora$gold
+                type = 6, color = silvermoon$champagne
               )
             )
           ),
@@ -456,7 +456,7 @@ ui <- bslib::page_navbar(
             bslib::card_body(
               shinycssloaders::withSpinner(
                 plotly::plotlyOutput("compare_dist", height = "420px"),
-                type = 6, color = crypto_aurora$gold
+                type = 6, color = silvermoon$champagne
               )
             )
           )
@@ -528,7 +528,7 @@ ui <- bslib::page_navbar(
           bslib::card_body(
             shinycssloaders::withSpinner(
               plotly::plotlyOutput("fc_plot", height = "520px"),
-              type = 6, color = crypto_aurora$gold
+              type = 6, color = silvermoon$champagne
             )
           ),
           bslib::card_footer(
@@ -675,7 +675,7 @@ ui <- bslib::page_navbar(
             bslib::card_header(bsicons::bs_icon("file-earmark-code"),
                                " Licencia y código"),
             bslib::card_body(
-              tags$p("alleria se distribuye bajo licencia ",
+              tags$p("Alleria se distribuye bajo licencia ",
                      tags$b("MIT"),
                      ". Originalmente publicada como doge_whisperer en ",
                      "2022 con un stack mixto Python/Keras, esta iteración ",

@@ -14,7 +14,7 @@
   req <- httr2::request(.coingecko_base) |>
     httr2::req_url_path_append(path) |>
     httr2::req_url_query(!!!query) |>
-    httr2::req_user_agent("alleria/2.0 (Angnar)") |>
+    httr2::req_user_agent("Alleria/2.0 (Angnar)") |>
     httr2::req_retry(
       max_tries = 4,
       backoff   = function(i) min(2 ^ i, 30),

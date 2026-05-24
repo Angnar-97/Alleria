@@ -26,6 +26,9 @@ alleria_cache/
 _tmp_*.R
 _scratch_*.R
 
+# Mockups, exploraciones visuales y prototipos de diseño (no son código de la app)
+_design/
+
 # Logs
 *.log
 shiny.log
