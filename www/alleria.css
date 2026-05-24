@@ -1,0 +1,511 @@
+/* ============================================================
+   alleria — "Crypto Aurora" design system
+   Dark editorial, distinta a Ember/Blight/Verdant: night canvas
+   con acento Doge/Bitcoin gold + verde mint (alcista) + rojo
+   crimson (bajista) + electric blue + violeta. Tipografía
+   Crimson Pro (display) + Inter (body) + JetBrains Mono (code)
+   coherente con el resto del portfolio de Angnar.
+   ============================================================ */
+
+:root {
+  --alleria-bg:          #0E1116;
+  --alleria-bg-deep:     #0A0D11;
+  --alleria-surface:     #161B22;
+  --alleria-surface-alt: #1F2731;
+  --alleria-hairline:    #2A323D;
+
+  --alleria-ink:         #E6EDF3;
+  --alleria-ink-soft:    #C9D1D9;
+  --alleria-muted:       #8B949E;
+
+  --alleria-gold:        #F2A900;
+  --alleria-gold-soft:   #FFD86B;
+  --alleria-bone:        #EFE7D2;  /* blanco roto cálido para iconos nav */
+  --alleria-mint:        #3FB950;
+  --alleria-crimson:     #F85149;
+  --alleria-electric:    #58A6FF;
+  --alleria-violet:      #A371F7;
+
+  --alleria-shadow-sm:  0 2px 8px rgba(0, 0, 0, 0.32);
+  --alleria-shadow-md:  0 8px 28px rgba(0, 0, 0, 0.45);
+  --alleria-shadow-lg:  0 20px 60px rgba(0, 0, 0, 0.55);
+
+  --alleria-font-serif: "Crimson Pro", "Source Serif Pro", Georgia, serif;
+  --alleria-font-sans:  "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --alleria-font-mono:  "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* ---------- Base ------------------------------------------- */
+html, body {
+  background: var(--alleria-bg);
+  color: var(--alleria-ink);
+  font-family: var(--alleria-font-sans);
+  font-feature-settings: "cv11", "ss01", "kern";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+h1, h2, h3, h4, .alleria-serif {
+  font-family: var(--alleria-font-serif);
+  color: var(--alleria-ink);
+  letter-spacing: -0.01em;
+}
+code, pre, kbd, .alleria-mono {
+  font-family: var(--alleria-font-mono);
+  font-size: 0.88em;
+}
+a {
+  color: var(--alleria-gold);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(242, 169, 0, 0.25);
+  transition: color 0.15s, border-color 0.15s;
+}
+a:hover { color: var(--alleria-gold-soft); border-bottom-color: var(--alleria-gold-soft); }
+a.btn, .navbar a, .card-header a, .alleria-secondary-link, .alleria-footer a {
+  border-bottom: none;
+}
+
+/* ---------- Navbar ---------------------------------------- */
+.navbar {
+  background: var(--alleria-bg-deep) !important;
+  border-bottom: 1px solid var(--alleria-hairline);
+  padding: 0.45rem 1.2rem;
+}
+.alleria-brand {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 12px;
+  color: var(--alleria-ink) !important;
+}
+.alleria-logo {
+  height: 34px;
+  width: auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.92;
+  transition: opacity 0.2s, transform 0.3s ease;
+}
+.alleria-logo:hover {
+  opacity: 1;
+  transform: rotate(2deg);
+}
+.alleria-brand-text {
+  font-family: var(--alleria-font-serif);
+  font-weight: 600;
+  font-size: 1.4rem;
+  letter-spacing: -0.01em;
+}
+.alleria-brand-text .alleria-accent { color: var(--alleria-gold); }
+.alleria-navbar-spacer { height: 4.2rem; }
+
+/* Iconos (bsicons -> SVG) de las pestañas del navbar:
+   blanco roto cálido elegante, gold al hover/activo. El color del texto
+   contiguo lo sigue mandando bslib via navbar-dark-color. */
+.navbar .nav-link svg,
+.navbar .nav-link i,
+.navbar .nav-link .bi {
+  color: var(--alleria-bone);
+  fill: currentColor;
+  opacity: 0.86;
+  transition: color 0.18s, opacity 0.18s, transform 0.25s ease;
+  vertical-align: -0.12em;
+}
+.navbar .nav-link:hover svg,
+.navbar .nav-link:hover i,
+.navbar .nav-link:hover .bi,
+.navbar .nav-link.active svg,
+.navbar .nav-link.active i,
+.navbar .nav-link.active .bi {
+  color: var(--alleria-gold);
+  opacity: 1;
+}
+
+/* ---------- Hero ------------------------------------------ */
+.alleria-hero {
+  background:
+    radial-gradient(ellipse at 80% -10%, rgba(242,169,0,0.18), transparent 55%),
+    radial-gradient(ellipse at 0% 110%, rgba(163,113,247,0.12), transparent 50%),
+    linear-gradient(180deg, #0A0D11 0%, #161B22 100%);
+  padding: 5rem 1.2rem 4.5rem;
+  border-bottom: 1px solid var(--alleria-hairline);
+}
+.alleria-hero-inner {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 4rem;
+  max-width: 1240px;
+  margin: 0 auto;
+  align-items: center;
+}
+@media (max-width: 900px) {
+  .alleria-hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+}
+.alleria-hero-art {
+  display: flex; justify-content: center; align-items: center;
+  position: relative;
+}
+.alleria-hero-art::after {
+  content: "";
+  position: absolute;
+  inset: 12% 8%;
+  background: radial-gradient(circle, rgba(242,169,0,0.28), transparent 65%);
+  filter: blur(40px);
+  z-index: 0;
+}
+.alleria-hero-logo {
+  width: 62%;
+  max-width: 280px;
+  filter: drop-shadow(0 10px 24px rgba(0,0,0,0.5))
+          brightness(0.92) saturate(0.4)
+          hue-rotate(-25deg);
+  position: relative;
+  z-index: 1;
+  opacity: 0.94;
+  transition: opacity 0.2s, transform 0.3s ease;
+  transform-origin: center;
+}
+.alleria-hero-logo:hover {
+  opacity: 1;
+  transform: rotate(2deg);
+}
+.alleria-eyebrow {
+  display: inline-block;
+  font-family: var(--alleria-font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--alleria-gold);
+  border: 1px solid rgba(242, 169, 0, 0.45);
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  margin-bottom: 1.1rem;
+}
+.alleria-hero-title {
+  font-family: var(--alleria-font-serif);
+  font-size: clamp(2.6rem, 5vw, 4.2rem);
+  font-weight: 700;
+  margin: 0 0 0.6rem;
+  color: var(--alleria-ink);
+  line-height: 1.05;
+}
+.alleria-hero-title .alleria-accent { color: var(--alleria-gold); }
+.alleria-hero-tagline {
+  font-family: var(--alleria-font-serif);
+  font-size: 1.4rem;
+  font-style: italic;
+  color: var(--alleria-ink-soft);
+  margin-bottom: 0.9rem;
+}
+.alleria-hero-sub {
+  font-size: 1.02rem;
+  color: var(--alleria-muted);
+  max-width: 56ch;
+  line-height: 1.55;
+  margin-bottom: 1.6rem;
+}
+.alleria-hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+.alleria-cta {
+  background: var(--alleria-gold) !important;
+  border-color: var(--alleria-gold) !important;
+  color: #1A1300 !important;
+  font-weight: 600;
+  padding: 0.65rem 1.2rem;
+  border-radius: 0.55rem;
+  box-shadow: 0 6px 18px rgba(242,169,0,0.25);
+}
+.alleria-cta:hover {
+  background: var(--alleria-gold-soft) !important;
+  border-color: var(--alleria-gold-soft) !important;
+}
+.alleria-secondary-link {
+  color: var(--alleria-ink-soft);
+  font-family: var(--alleria-font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  border-bottom: 1px dashed var(--alleria-muted);
+  padding-bottom: 2px;
+}
+
+/* ---------- Section base ---------------------------------- */
+.alleria-section {
+  padding: 4rem 1.2rem;
+  border-bottom: 1px solid var(--alleria-hairline);
+}
+.alleria-section-narrow .alleria-section-body { max-width: 880px; margin: 0 auto; }
+.alleria-section-head {
+  max-width: 1240px;
+  margin: 0 auto 2.4rem;
+}
+.alleria-section-title {
+  font-family: var(--alleria-font-serif);
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  font-weight: 600;
+  color: var(--alleria-ink);
+  margin: 0.4rem 0 0;
+}
+
+/* ---------- KPIs ------------------------------------------ */
+.alleria-kpis {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+}
+@media (max-width: 900px) { .alleria-kpis { grid-template-columns: repeat(2, 1fr); } }
+.alleria-kpi {
+  background: var(--alleria-surface);
+  border: 1px solid var(--alleria-hairline);
+  border-radius: 0.75rem;
+  padding: 1.1rem 1.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  position: relative;
+  overflow: hidden;
+}
+.alleria-kpi::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--alleria-gold), var(--alleria-violet));
+}
+.alleria-kpi-label {
+  font-family: var(--alleria-font-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--alleria-muted);
+}
+.alleria-kpi-value {
+  font-family: var(--alleria-font-serif);
+  font-size: 1.85rem;
+  font-weight: 600;
+  color: var(--alleria-ink);
+}
+.alleria-kpi-sub {
+  font-size: 0.84rem;
+  color: var(--alleria-muted);
+}
+
+/* ---------- Workflow / steps ------------------------------ */
+.alleria-steps {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+}
+@media (max-width: 900px) { .alleria-steps { grid-template-columns: repeat(2, 1fr); } }
+.alleria-step {
+  background: var(--alleria-surface);
+  border: 1px solid var(--alleria-hairline);
+  border-radius: 0.75rem;
+  padding: 1.4rem 1.3rem 1.6rem;
+  position: relative;
+}
+.alleria-step-num {
+  font-family: var(--alleria-font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  color: var(--alleria-gold);
+  text-transform: uppercase;
+}
+.alleria-step h3 {
+  font-family: var(--alleria-font-serif);
+  font-size: 1.2rem;
+  margin: 0.4rem 0 0.5rem;
+  color: var(--alleria-ink);
+}
+.alleria-step p { color: var(--alleria-muted); font-size: 0.93rem; line-height: 1.55; margin: 0; }
+
+/* ---------- Feature grid ---------------------------------- */
+.alleria-features {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+}
+@media (max-width: 900px) { .alleria-features { grid-template-columns: 1fr; } }
+.alleria-feature {
+  background: var(--alleria-surface);
+  border: 1px solid var(--alleria-hairline);
+  border-radius: 0.75rem;
+  padding: 1.4rem;
+  display: flex; gap: 1rem; align-items: flex-start;
+}
+.alleria-feature-icon {
+  width: 38px; height: 38px;
+  border-radius: 0.55rem;
+  background: linear-gradient(135deg, rgba(242,169,0,0.18), rgba(163,113,247,0.18));
+  display: flex; align-items: center; justify-content: center;
+  color: var(--alleria-gold);
+  font-size: 1.2rem; flex-shrink: 0;
+}
+.alleria-feature h3 {
+  font-family: var(--alleria-font-serif);
+  font-size: 1.08rem;
+  color: var(--alleria-ink);
+  margin: 0 0 0.35rem;
+}
+.alleria-feature p { color: var(--alleria-muted); margin: 0; font-size: 0.92rem; line-height: 1.5; }
+
+/* ---------- Cards (bslib) --------------------------------- */
+.card {
+  background: var(--alleria-surface) !important;
+  border: 1px solid var(--alleria-hairline) !important;
+  box-shadow: var(--alleria-shadow-sm);
+}
+.card-header {
+  background: var(--alleria-surface-alt) !important;
+  border-bottom: 1px solid var(--alleria-hairline) !important;
+  font-family: var(--alleria-font-serif);
+  font-weight: 600;
+  color: var(--alleria-ink);
+}
+.bslib-value-box {
+  background: var(--alleria-surface) !important;
+  border: 1px solid var(--alleria-hairline) !important;
+}
+.bslib-value-box .value-box-title { color: var(--alleria-muted) !important; }
+.bslib-value-box .value-box-value {
+  font-family: var(--alleria-font-serif) !important;
+  color: var(--alleria-ink) !important;
+}
+
+/* ---------- Inputs ---------------------------------------- */
+.form-control, .form-select, .selectize-input {
+  background: var(--alleria-surface-alt) !important;
+  color: var(--alleria-ink) !important;
+  border-color: var(--alleria-hairline) !important;
+}
+.form-control:focus, .selectize-input.focus {
+  border-color: var(--alleria-gold) !important;
+  box-shadow: 0 0 0 0.2rem rgba(242,169,0,0.2) !important;
+}
+.selectize-dropdown {
+  background: var(--alleria-surface) !important;
+  color: var(--alleria-ink) !important;
+  border: 1px solid var(--alleria-hairline) !important;
+}
+.selectize-dropdown .active {
+  background: var(--alleria-surface-alt) !important;
+  color: var(--alleria-gold) !important;
+}
+.shiny-input-container > label { color: var(--alleria-ink-soft); }
+
+/* ---------- DT (datatables) ------------------------------- */
+table.dataTable {
+  color: var(--alleria-ink) !important;
+  background: var(--alleria-surface) !important;
+  border-collapse: separate !important;
+}
+table.dataTable thead th {
+  background: var(--alleria-surface-alt) !important;
+  color: var(--alleria-ink) !important;
+  border-bottom: 1px solid var(--alleria-hairline) !important;
+  font-family: var(--alleria-font-mono);
+  font-size: 0.78rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+table.dataTable tbody tr {
+  background: var(--alleria-surface) !important;
+  color: var(--alleria-ink) !important;
+}
+table.dataTable tbody tr:hover {
+  background: var(--alleria-surface-alt) !important;
+}
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_paginate,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_length {
+  color: var(--alleria-muted) !important;
+}
+.dataTables_wrapper .paginate_button {
+  color: var(--alleria-ink-soft) !important;
+}
+.dataTables_wrapper .paginate_button.current {
+  background: var(--alleria-gold) !important;
+  border-color: var(--alleria-gold) !important;
+  color: #1A1300 !important;
+}
+
+/* ---------- Tables (price coloring) ----------------------- */
+.alleria-up   { color: var(--alleria-mint) !important; font-weight: 600; }
+.alleria-down { color: var(--alleria-crimson) !important; font-weight: 600; }
+
+/* ---------- Footer ---------------------------------------- */
+.alleria-footer {
+  background: var(--alleria-bg-deep);
+  color: var(--alleria-muted);
+  padding: 3.2rem 1.2rem 2rem;
+  border-top: 1px solid var(--alleria-hairline);
+}
+.alleria-footer-grid {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  gap: 2.4rem;
+}
+@media (max-width: 900px) { .alleria-footer-grid { grid-template-columns: 1fr; } }
+.alleria-footer-col .alleria-eyebrow { margin-bottom: 0.8rem; }
+.alleria-footer-lead {
+  color: var(--alleria-ink-soft);
+  font-family: var(--alleria-font-serif);
+  font-size: 1.05rem;
+  line-height: 1.55;
+  margin: 0;
+}
+.alleria-footer a { color: var(--alleria-ink-soft); }
+.alleria-footer a:hover { color: var(--alleria-gold); }
+
+/* ---------- Page (sub-pages) ------------------------------ */
+.alleria-page { padding: 3.4rem 1.2rem 4rem; }
+.alleria-page-inner { max-width: 1240px; margin: 0 auto; }
+.alleria-page-title {
+  font-family: var(--alleria-font-serif);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  margin: 0.3rem 0 1.6rem;
+  color: var(--alleria-ink);
+}
+.alleria-deps { display: grid; grid-template-columns: 200px 1fr; gap: 0.5rem 1.2rem; }
+.alleria-deps dt {
+  color: var(--alleria-gold);
+  font-family: var(--alleria-font-mono);
+  font-size: 0.92rem;
+  text-transform: lowercase;
+}
+.alleria-deps dd { color: var(--alleria-muted); margin: 0; }
+
+/* ---------- Misc ------------------------------------------ */
+.alleria-muted { color: var(--alleria-muted); }
+.alleria-hr {
+  border: 0;
+  border-top: 1px solid var(--alleria-hairline);
+  margin: 2rem 0;
+}
+.btn-primary {
+  background: var(--alleria-gold);
+  border-color: var(--alleria-gold);
+  color: #1A1300;
+  font-weight: 500;
+}
+.btn-primary:hover {
+  background: var(--alleria-gold-soft);
+  border-color: var(--alleria-gold-soft);
+  color: #1A1300;
+}
+.btn-outline-primary {
+  border-color: var(--alleria-gold);
+  color: var(--alleria-gold);
+}
+.btn-outline-primary:hover {
+  background: var(--alleria-gold);
+  color: #1A1300;
+}
+
+/* plotly modebar */
+.modebar { background: transparent !important; }
+.modebar-btn path { fill: var(--alleria-muted) !important; }
+.modebar-btn:hover path { fill: var(--alleria-gold) !important; }

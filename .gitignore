@@ -1,0 +1,43 @@
+# RStudio
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+
+# R session
+.Rapp.history
+*.Rcheck/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+
+# Caches de la app
+_cache/
+*.rds.cache
+alleria_cache/
+
+# Temporales del proyecto (scripts _tmp_*.R que uso para debugging)
+_tmp_*.R
+_scratch_*.R
+
+# Logs
+*.log
+shiny.log
+
+# Renv (no usamos, pero por si acaso)
+renv/library/
+renv/local/
+renv/cellar/
+renv/lock/
+
+# Ficheros sensibles
+.env
+.Renviron
+*.pem
+secrets.yml
